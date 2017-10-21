@@ -1,6 +1,6 @@
 package Q2Deadlock;
 
-public class ForkSemaphore {
+public class BinarySemaphore {
 	private boolean forkTaken = false;
 
 	public synchronized void take() {

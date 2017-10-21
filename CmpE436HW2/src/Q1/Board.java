@@ -9,7 +9,8 @@ import java.util.Scanner;
 //CmpE436 Assignment 2.
 public class Board {
 	private static Cell[][] matrix;
-	private int maxGenerations;
+	public static Integer maxGenerations;
+	public static Integer count;
 	
 	/**
 	 * Constructor expects the dimensions
@@ -18,6 +19,14 @@ public class Board {
 	 */
 	public Board(int n, int m) {
 		matrix = new Cell[n][m];
+	}
+	
+	public static int getWidth() {
+		return matrix.length;
+	}
+	
+	public static int getHeight() {
+		return matrix[0].length;
 	}
 	
 	/**
@@ -35,7 +44,7 @@ public class Board {
 			for (int i = 0; i < matrix.length; i++) {
 				for (int j = 0; j < matrix[0].length; j++) {
 					try {
-						matrix[i][j] = new Cell(i, j, in.nextInt());
+						matrix[i][j] = new Cell(i, j, in.nextInt(), maxGenerations);
 					} catch (Exception e) {
 						System.out.println("Error reading element [" + i + ", " + j + "].");
 						System.out.println("Please make sure all elements are integers");
@@ -60,7 +69,7 @@ public class Board {
 		Random rand = new Random(); 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
-				matrix[i][j] = new Cell(i, j, rand.nextInt(2));
+				matrix[i][j] = new Cell(i, j, rand.nextInt(2), maxGenerations);
 			}
 		}
 	}
@@ -74,17 +83,20 @@ public class Board {
 			System.out.println("Max generations cannot be negative.");
 			return;
 		}
-		this.maxGenerations = maxGenerations;
+		Board.maxGenerations = new Integer(maxGenerations);
 	}
 
 	/**
 	 * Runs the simulation for given number of generations.
 	 */
 	public void runSimulation() {
-		Semaphore s = new Semaphore(matrix.length * matrix[0].length, maxGenerations);
+		count = new Integer(0); 		
+		CountingSemaphore s1 = new CountingSemaphore(1);
+		CountingSemaphore b1 = new CountingSemaphore(0);
+		CountingSemaphore cycle = new CountingSemaphore(matrix[0].length*matrix.length);
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j <matrix[0].length; j++) {
-				matrix[i][j].setSemaphore(s);
+				matrix[i][j].setSemaphores(s1, b1, cycle);
 				matrix[i][j].start();
 			}
 		}

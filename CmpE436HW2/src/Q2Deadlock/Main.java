@@ -4,15 +4,15 @@ package Q2Deadlock;
 //irmakkavasoglu@gmail.com
 //CmpE436 Assignment 2.
 public class Main {
-	static ForkSemaphore[] forks;
+	static BinarySemaphore[] forks;
 	static Philosopher[] phils;
 	
 	public static void main(String[] args) {
 		// Say we have 3 forks.
-		forks = new ForkSemaphore[3];
-		forks[0] = new ForkSemaphore();
-		forks[1] = new ForkSemaphore();
-		forks[2] = new ForkSemaphore();
+		forks = new BinarySemaphore[3];
+		forks[0] = new BinarySemaphore();
+		forks[1] = new BinarySemaphore();
+		forks[2] = new BinarySemaphore();
 		
 		// Also say we have 3 hungry philosophers.
 		phils = new Philosopher[3];
