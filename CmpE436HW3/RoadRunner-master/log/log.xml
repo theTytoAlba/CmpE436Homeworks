@@ -1,9 +1,9 @@
 <entry>
-  <date> Sat Nov 04 15:29:23 EET 2017 </date> 
+  <date> Sat Nov 04 17:13:35 EET 2017 </date> 
   <mode> FAST </mode> 
   <timeout> NO </timeout> 
   <options>
-    <option><name> javaArgs </name>           <value> test.Q1.LockSetRace  </value> </option>
+    <option><name> javaArgs </name>           <value> test.Q1.HappensBeforeRace  </value> </option>
     <option><name> noDecInline </name>        <value> false </value> </option>
     <option><name> quiet </name>              <value> false </value> </option>
     <option><name> logDepth </name>           <value> 100 </value> </option>
@@ -83,13 +83,13 @@
     <name> user.dir </name>            <value> /Users/vivian/Documents/CmpE436Homeworks/CmpE436HW3/RoadRunner-master </value> 
     <availableProcs> 4 </availableProcs> 
     <memCommitted> 982 </memCommitted> 
-    <memUsed> 88 </memUsed> 
+    <memUsed> 118 </memUsed> 
     <memTotal> 982 </memTotal> 
-    <compileTime> 1029 </compileTime> 
+    <compileTime> 980 </compileTime> 
     <gc> <name> PS Scavenge </name> <time> 0 </time> </gc>
     <gc> <name> PS MarkSweep </name> <time> 0 </time> </gc>
   </system>
-  <instrumented> test/Q1/BinarySemaphore test/Q1/LockSetRace test/Q1/RaceThread  </instrumented> 
+  <instrumented> test/Q1/CountingSemaphore test/Q1/HBRaceThread test/Q1/HappensBeforeRace  </instrumented> 
   <instrumentedNum> 3 </instrumentedNum> 
   <skipped>  </skipped> 
   <skippedNum> 0 </skippedNum> 
@@ -109,13 +109,13 @@
 
     <counter><name> "ShadowLock: objects" </name>                        <value> 0 </value> </counter>
 
-    <counter><name> "ShadowThread: Count" </name>                        <value> 3 </value> </counter>
+    <counter><name> "ShadowThread: Count" </name>                        <value> 6 </value> </counter>
     <counter><name> "ShadowThread: Max Live" </name>                     <value> 3 </value> </counter>
     <counter><name> "ShadowThread: getCurrentThread() calls" </name>     <value> 0 </value> </counter>
 
-    <counter><name> "Time: Instrumenter" </name>                         <value> <total>20.0000</total> <count>3</count> <ave>6.66667</ave> </value> </counter>
+    <counter><name> "Time: Instrumenter" </name>                         <value> <total>35.0000</total> <count>3</count> <ave>11.6667</ave> </value> </counter>
 
-    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 6 </value> </counter>
+    <counter><name> "VectorClock: Pair Objects" </name>                  <value> 12 </value> </counter>
   </counters>
   <yikes>
   </yikes>
@@ -125,7 +125,7 @@
   <tool>
     <name> Last </name> 
   </tool>
-  <threadCount> 3 </threadCount> 
+  <threadCount> 6 </threadCount> 
   <threadMaxActive> 3 </threadMaxActive> 
   <errorTotal> 0 </errorTotal> 
   <distinctErrorTotal> 0 </distinctErrorTotal> 
@@ -145,5 +145,5 @@
   <yikesTotal> 0 </yikesTotal> 
   <failed> false </failed> 
   <failedReason>  </failedReason> 
-  <time> 376 </time> 
+  <time> 385 </time> 
 </entry>

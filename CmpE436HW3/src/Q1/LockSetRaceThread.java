@@ -1,10 +1,10 @@
 package Q1;
 
-public class RaceThread extends Thread {
+public class LockSetRaceThread extends Thread {
 		BinarySemaphore mutex;
 		int val;
 		
-		public RaceThread (BinarySemaphore mutex, int val) {
+		public LockSetRaceThread (BinarySemaphore mutex, int val) {
 			this.mutex = mutex;
 			this.val = val;
 		}

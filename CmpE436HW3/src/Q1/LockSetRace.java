@@ -5,8 +5,8 @@ public class LockSetRace {
 	public static void main(String[] args) {
 		
 		BinarySemaphore s = new BinarySemaphore();
-		RaceThread t1 = new RaceThread(s, 5);
-		RaceThread t2 = new RaceThread(s, 15);
+		LockSetRaceThread t1 = new LockSetRaceThread(s, 5);
+		LockSetRaceThread t2 = new LockSetRaceThread(s, 15);
 		
 		t1.start();
 		t2.start();
