@@ -19,6 +19,6 @@ public class HappensBeforeRace {
 		t5.start();
 		
 		while(t1.isAlive() || t2.isAlive() || t3.isAlive()|| t4.isAlive()|| t5.isAlive());
-		System.out.println(raceVar);
+		System.exit(0);
 	}
 }

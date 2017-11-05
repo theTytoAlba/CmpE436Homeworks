@@ -13,6 +13,8 @@ public class LockSetRaceThread extends Thread {
 		public void run() {
 			mutex.take();
 			LockSetRace.raceVar = val;
+			LockSetRace.raceVar++;
+			LockSetRace.raceVar*=2;
 			mutex.release();
 		}
 

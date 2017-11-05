@@ -3,27 +3,42 @@ This is the eclipse project folder for homework 3.
 Student Name: Irmak Kavasoglu
 Student ID: 2013400090
 
-The RoadRunner folder has the suggested racer repo files.
-
 Q1:
+The classes are in eclipse project files, under src folder in Q1.
+
 A.
 For a race which is recognisable by lockset algorithm, see classes:
+ObviousRace
+ObviousRaceThread
+This example has one static variable. The variable has initially 5 value. The thread updates this value. After the thread is started, there is a print. This print may output the initial value if the thread is slow, or the updated value if it was fast, it is a race. Since it is not protected by any locks, lockset algorithm will catch this.
+
 
 For a race which is not recognisable by lockset algorithm, see classes:
+LockSetRace
+LockSetRaceThread
+BinarySemaphore
+This example has two threads and shared mutex and variable. The variable is only changed within a shared mutex, therefore LockSet algorithm doesnt see a race here. But since we don't know which thread will get the lock first, we can get different results in the end due to the race.
 
 B.
 For a race which is recognisable by happens before algorithm, see classes:
+ObviousRace
+ObviousRaceThread
+This example has one static variable. The variable has initially 5 value. The thread updates this value. After the thread is started, there is a print. This print may output the initial value if the thread is slow, or the updated value if it was fast, it is a race. Since there is no happens before relation between the print statement and assignment in thread's run method, happens before relation will catch this.
 
 For a race which is not recognisable by happens before algorithm, see classes:
+HappensBeforeRace
+HBRaceThread
+CountingSemaphore
+This example has a counting semaphore which has 2 available locks. We don't know which two of the existing 5 threads will get it first and which ones will get it last, but happens before relation is defined between locks and unlocks so the algorithm doesnt see the race.
 
 C.
 RoadRunner is inside this repo. You can run it using the commands in the install.txt file.
-I have added the project classes under test folder as well. So you can run:
- 
-rrrun -tool=HB test.Q1.HappensBeforeRace (there is a race but hb won’t find it)
 
+RoadRunner's HB methods are working very correctly. But it's LS algorithm doesnt work properly. I did my research and digged out this line from the published paper of the RoadRunner:
 
-for happens before algorithm.
+"Java locks are reentrant, but to simplify tool implementations, ROADRUNNER does not generate events for re-entrant lock acquires and releases, since they are no-ops."
+
+Therefore the algorithm doesn't recognize java's Semaphores and Locks, leading to false negatives.
 
 Q2:
 The promela code is inside the Spin folder, under Q2.
@@ -51,7 +66,7 @@ For s0; if there is no p, there is going to be r.
 This is correct because the only state p doesnt exist is s0 and it has r.
 s2 |= ¬p → r
 For s2; if there is no p, there is going to be r.
-s2 only has one next node, which is s1.
+s2 only has one next node, which is s1. s1 has p, therefore it does not violate this condition. Correct.
 
 ii.
 s0 |= Ft
