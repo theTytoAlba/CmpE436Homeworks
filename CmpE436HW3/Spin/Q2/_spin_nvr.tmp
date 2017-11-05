@@ -1,45 +1,7 @@
-never mutex {    /* !([] (! ((pCritical) && (qCritical)))) */
-T0_init:
-	do
-	:: atomic { (! ((! ((pCritical) && (qCritical))))) -> assert(!(! ((! ((pCritical) && (qCritical)))))) }
-	:: (1) -> goto T0_init
-	od;
-accept_all:
-	skip
-}
 never critical1 {    /* !(<> (pCritical)) */
 accept_init:
 T0_init:
 	do
 	:: (! ((pCritical))) -> goto T0_init
-	od;
-}
-never critical2 {    /* !(<> (qCritical)) */
-accept_init:
-T0_init:
-	do
-	:: (! ((qCritical))) -> goto T0_init
-	od;
-}
-never infCritical1 {    /* !([] (<> (pCritical))) */
-T0_init:
-	do
-	:: (! ((pCritical))) -> goto accept_S4
-	:: (1) -> goto T0_init
-	od;
-accept_S4:
-	do
-	:: (! ((pCritical))) -> goto accept_S4
-	od;
-}
-never infCritical2 {    /* !([] (<> (qCritical))) */
-T0_init:
-	do
-	:: (! ((qCritical))) -> goto accept_S4
-	:: (1) -> goto T0_init
-	od;
-accept_S4:
-	do
-	:: (! ((qCritical))) -> goto accept_S4
 	od;
 }

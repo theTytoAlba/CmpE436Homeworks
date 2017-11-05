@@ -15,6 +15,8 @@ putpeg(int n, int m)
 	printf("%s:%d\n",
 		T_SRC[n].fl, T_SRC[n].ln);
 }
+#else
+#define tr_2_src(m,f,l)
 #endif
 
 void
@@ -22,92 +24,23 @@ settable(void)
 {	Trans *T;
 	Trans *settr(int, int, int, int, int, char *, int, int, int);
 
-	trans = (Trans ***) emalloc(8*sizeof(Trans **));
+	trans = (Trans ***) emalloc(4*sizeof(Trans **));
 
-	/* proctype 6: infCritical2 */
+	/* proctype 2: critical1 */
 
-	trans[6] = (Trans **) emalloc(14*sizeof(Trans *));
+	trans[2] = (Trans **) emalloc(7*sizeof(Trans *));
 
-	trans[6][6]	= settr(64,0,5,1,0,".(goto)", 0, 2, 0);
-	T = trans[6][5] = settr(63,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(63,0,1,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(63,0,3,0,0,"DO", 0, 2, 0);
-	trans[6][1]	= settr(59,0,10,3,0,"(!(qCritical))", 1, 2, 0);
-	trans[6][2]	= settr(60,0,10,1,0,"goto accept_S4", 0, 2, 0);
-	trans[6][3]	= settr(61,0,5,1,0,"(1)", 0, 2, 0);
-	trans[6][4]	= settr(62,0,5,1,0,"goto T0_init", 0, 2, 0);
-	trans[6][7]	= settr(65,0,10,1,0,"break", 0, 2, 0);
-	trans[6][11]	= settr(69,0,10,1,0,".(goto)", 0, 2, 0);
-	T = trans[6][10] = settr(68,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(68,0,8,0,0,"DO", 0, 2, 0);
-	trans[6][8]	= settr(66,0,10,4,0,"(!(qCritical))", 1, 2, 0);
-	trans[6][9]	= settr(67,0,10,1,0,"goto accept_S4", 0, 2, 0);
-	trans[6][12]	= settr(70,0,13,1,0,"break", 0, 2, 0);
-	trans[6][13]	= settr(71,0,0,5,5,"-end-", 0, 3500, 0);
-
-	/* proctype 5: infCritical1 */
-
-	trans[5] = (Trans **) emalloc(14*sizeof(Trans *));
-
-	trans[5][6]	= settr(51,0,5,1,0,".(goto)", 0, 2, 0);
-	T = trans[5][5] = settr(50,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(50,0,1,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(50,0,3,0,0,"DO", 0, 2, 0);
-	trans[5][1]	= settr(46,0,10,6,0,"(!(pCritical))", 1, 2, 0);
-	trans[5][2]	= settr(47,0,10,1,0,"goto accept_S4", 0, 2, 0);
-	trans[5][3]	= settr(48,0,5,1,0,"(1)", 0, 2, 0);
-	trans[5][4]	= settr(49,0,5,1,0,"goto T0_init", 0, 2, 0);
-	trans[5][7]	= settr(52,0,10,1,0,"break", 0, 2, 0);
-	trans[5][11]	= settr(56,0,10,1,0,".(goto)", 0, 2, 0);
-	T = trans[5][10] = settr(55,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(55,0,8,0,0,"DO", 0, 2, 0);
-	trans[5][8]	= settr(53,0,10,7,0,"(!(pCritical))", 1, 2, 0);
-	trans[5][9]	= settr(54,0,10,1,0,"goto accept_S4", 0, 2, 0);
-	trans[5][12]	= settr(57,0,13,1,0,"break", 0, 2, 0);
-	trans[5][13]	= settr(58,0,0,8,8,"-end-", 0, 3500, 0);
-
-	/* proctype 4: critical2 */
-
-	trans[4] = (Trans **) emalloc(7*sizeof(Trans *));
-
-	trans[4][4]	= settr(43,0,3,1,0,".(goto)", 0, 2, 0);
-	T = trans[4][3] = settr(42,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(42,0,1,0,0,"DO", 0, 2, 0);
-	trans[4][1]	= settr(40,0,3,9,0,"(!(qCritical))", 1, 2, 0);
-	trans[4][2]	= settr(41,0,3,1,0,"goto T0_init", 0, 2, 0);
-	trans[4][5]	= settr(44,0,6,1,0,"break", 0, 2, 0);
-	trans[4][6]	= settr(45,0,0,10,10,"-end-", 0, 3500, 0);
-
-	/* proctype 3: critical1 */
-
-	trans[3] = (Trans **) emalloc(7*sizeof(Trans *));
-
-	trans[3][4]	= settr(37,0,3,1,0,".(goto)", 0, 2, 0);
-	T = trans[3][3] = settr(36,0,0,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(36,0,1,0,0,"DO", 0, 2, 0);
-	trans[3][1]	= settr(34,0,3,11,0,"(!(pCritical))", 1, 2, 0);
-	trans[3][2]	= settr(35,0,3,1,0,"goto T0_init", 0, 2, 0);
-	trans[3][5]	= settr(38,0,6,1,0,"break", 0, 2, 0);
-	trans[3][6]	= settr(39,0,0,12,12,"-end-", 0, 3500, 0);
-
-	/* proctype 2: mutex */
-
-	trans[2] = (Trans **) emalloc(11*sizeof(Trans *));
-
-	trans[2][7]	= settr(30,0,6,1,0,".(goto)", 0, 2, 0);
-	T = trans[2][6] = settr(29,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(29,0,3,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(29,0,4,0,0,"DO", 0, 2, 0);
-	T = trans[ 2][3] = settr(26,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(26,2,1,0,0,"ATOMIC", 1, 2, 0);
-	trans[2][1]	= settr(24,0,6,13,13,"(!(!((pCritical&&qCritical))))", 1, 2, 0); /* m: 2 -> 6,0 */
-	reached2[2] = 1;
-	trans[2][2]	= settr(0,0,0,0,0,"assert(!(!(!((pCritical&&qCritical)))))",0,0,0);
-	trans[2][4]	= settr(27,0,6,1,0,"(1)", 0, 2, 0);
-	trans[2][5]	= settr(28,0,6,1,0,"goto T0_init", 0, 2, 0);
-	trans[2][8]	= settr(31,0,9,1,0,"break", 0, 2, 0);
-	trans[2][9]	= settr(32,0,10,1,0,"(1)", 0, 2, 0);
-	trans[2][10]	= settr(33,0,0,14,14,"-end-", 0, 3500, 0);
+	trans[2][4]	= settr(27,0,3,1,0,".(goto)", 0, 2, 0);
+	T = trans[2][3] = settr(26,0,0,0,0,"DO", 0, 2, 0);
+		/* _spin_nvr.tmp:3 */
+	    T->nxt	= settr(26,0,1,0,0,"DO", 0, 2, 0);
+		/* _spin_nvr.tmp:3 */
+	trans[2][1]	= settr(24,0,3,3,0,"(!(pCritical))", 1, 2, 0);
+		tr_2_src(3, "_spin_nvr.tmp", 4);
+	trans[2][2]	= settr(25,0,3,1,0,"goto T0_init", 0, 2, 0);
+	trans[2][5]	= settr(28,0,6,1,0,"break", 0, 2, 0);
+	trans[2][6]	= settr(29,0,0,4,4,"-end-", 0, 3500, 0);
+		tr_2_src(4, "_spin_nvr.tmp", 6);
 
 	/* proctype 1: Q */
 
@@ -115,21 +48,32 @@ settable(void)
 
 	trans[1][10]	= settr(21,0,9,1,0,".(goto)", 0, 2, 0);
 	T = trans[1][9] = settr(20,0,0,0,0,"DO", 0, 2, 0);
+		/* q2.pml:36 */
 	    T->nxt	= settr(20,0,3,0,0,"DO", 0, 2, 0);
+		/* q2.pml:36 */
 	T = trans[ 1][3] = settr(14,2,0,0,0,"ATOMIC", 1, 2, 0);
+		/* q2.pml:38 */
 	T->nxt	= settr(14,2,1,0,0,"ATOMIC", 1, 2, 0);
-	trans[1][1]	= settr(12,4,4,15,15,"y1 = 1", 1, 2, 0); /* m: 2 -> 0,4 */
-	reached1[2] = 1;
-	trans[1][2]	= settr(0,0,0,0,0,"s = 1",0,0,0);
-	trans[1][4]	= settr(15,0,8,16,0,"(((y0==0)|(s!=0)))", 1, 2, 0);
+		/* q2.pml:38 */
+	trans[1][1]	= settr(12,2,2,5,5,"y1 = 1", 1, 2, 0);
+		tr_2_src(5, "q2.pml", 39);
+	trans[1][2]	= settr(13,0,4,6,6,"s = 1", 1, 2, 0);
+		tr_2_src(6, "q2.pml", 40);
+	trans[1][4]	= settr(15,0,8,7,0,"(((y0==0)|(s!=0)))", 1, 2, 0);
+		tr_2_src(7, "q2.pml", 44);
 	T = trans[ 1][8] = settr(19,2,0,0,0,"ATOMIC", 1, 2, 0);
+		/* q2.pml:47 */
 	T->nxt	= settr(19,2,5,0,0,"ATOMIC", 1, 2, 0);
-	trans[1][5]	= settr(16,0,9,17,17,"qCritical = 1", 1, 2, 0); /* m: 6 -> 0,9 */
-	reached1[6] = 1;
-	trans[1][6]	= settr(0,0,0,0,0,"y1 = 0",0,0,0);
-	trans[1][7]	= settr(0,0,0,0,0,"qCritical = 0",0,0,0);
+		/* q2.pml:47 */
+	trans[1][5]	= settr(16,2,6,8,8,"qCritical = 1", 1, 2, 0);
+		tr_2_src(8, "q2.pml", 48);
+	trans[1][6]	= settr(17,2,7,9,9,"y1 = 0", 1, 2, 0);
+		tr_2_src(9, "q2.pml", 49);
+	trans[1][7]	= settr(18,0,9,10,10,"qCritical = 0", 1, 2, 0);
+		tr_2_src(10, "q2.pml", 50);
 	trans[1][11]	= settr(22,0,12,1,0,"break", 0, 2, 0);
-	trans[1][12]	= settr(23,0,0,18,18,"-end-", 0, 3500, 0);
+	trans[1][12]	= settr(23,0,0,11,11,"-end-", 0, 3500, 0);
+		tr_2_src(11, "q2.pml", 53);
 
 	/* proctype 0: P */
 
@@ -137,21 +81,32 @@ settable(void)
 
 	trans[0][10]	= settr(9,0,9,1,0,".(goto)", 0, 2, 0);
 	T = trans[0][9] = settr(8,0,0,0,0,"DO", 0, 2, 0);
+		/* q2.pml:15 */
 	    T->nxt	= settr(8,0,3,0,0,"DO", 0, 2, 0);
+		/* q2.pml:15 */
 	T = trans[ 0][3] = settr(2,2,0,0,0,"ATOMIC", 1, 2, 0);
+		/* q2.pml:17 */
 	T->nxt	= settr(2,2,1,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][1]	= settr(0,4,4,19,19,"y0 = 1", 1, 2, 0); /* m: 2 -> 0,4 */
-	reached0[2] = 1;
-	trans[0][2]	= settr(0,0,0,0,0,"s = 0",0,0,0);
-	trans[0][4]	= settr(3,0,8,20,0,"(((y1==0)|(s!=1)))", 1, 2, 0);
+		/* q2.pml:17 */
+	trans[0][1]	= settr(0,2,2,12,12,"y0 = 1", 1, 2, 0);
+		tr_2_src(12, "q2.pml", 18);
+	trans[0][2]	= settr(1,0,4,13,13,"s = 0", 1, 2, 0);
+		tr_2_src(13, "q2.pml", 19);
+	trans[0][4]	= settr(3,0,8,14,0,"(((y1==0)|(s!=1)))", 1, 2, 0);
+		tr_2_src(14, "q2.pml", 23);
 	T = trans[ 0][8] = settr(7,2,0,0,0,"ATOMIC", 1, 2, 0);
+		/* q2.pml:26 */
 	T->nxt	= settr(7,2,5,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][5]	= settr(4,0,9,21,21,"pCritical = 1", 1, 2, 0); /* m: 6 -> 0,9 */
-	reached0[6] = 1;
-	trans[0][6]	= settr(0,0,0,0,0,"y0 = 0",0,0,0);
-	trans[0][7]	= settr(0,0,0,0,0,"pCritical = 0",0,0,0);
+		/* q2.pml:26 */
+	trans[0][5]	= settr(4,2,6,15,15,"pCritical = 1", 1, 2, 0);
+		tr_2_src(15, "q2.pml", 27);
+	trans[0][6]	= settr(5,2,7,16,16,"y0 = 0", 1, 2, 0);
+		tr_2_src(16, "q2.pml", 28);
+	trans[0][7]	= settr(6,0,9,17,17,"pCritical = 0", 1, 2, 0);
+		tr_2_src(17, "q2.pml", 29);
 	trans[0][11]	= settr(10,0,12,1,0,"break", 0, 2, 0);
-	trans[0][12]	= settr(11,0,0,22,22,"-end-", 0, 3500, 0);
+	trans[0][12]	= settr(11,0,0,18,18,"-end-", 0, 3500, 0);
+		tr_2_src(18, "q2.pml", 32);
 	/* np_ demon: */
 	trans[_NP_] = (Trans **) emalloc(2*sizeof(Trans *));
 	T = trans[_NP_][0] = settr(9997,0,1,_T5,0,"(np_)", 1,2,0);

@@ -1,4 +1,4 @@
-byte y0 = 1; byte y1 = 0; byte s; 
+byte y0 = 0; byte y1 = 0; byte s; 
 byte pCritical = 0; byte qCritical = 0;
 
 // Q2.a: Mutex check
@@ -20,7 +20,7 @@ active proctype P() {
 		} 
 
 		// wait until condition 
-		(y1 == 0 | s != 1);
+		(y1 == 0 || s != 1);
 
 		// critical section
 		atomic {
@@ -41,7 +41,7 @@ active proctype Q() {
 		} 
 
 		// wait until condition
-		(y0 == 0 | s != 0);
+		(y0 == 0 || s != 0);
 
 		// critical section 
 		atomic {
