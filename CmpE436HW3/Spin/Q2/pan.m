@@ -93,10 +93,10 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 7: // STATE 4 - q2.pml:44 - [(((y0==0)|(s!=0)))] (0:0:0 - 0)
+	case 7: // STATE 4 - q2.pml:44 - [(((y0==0)||(s!=1)))] (0:0:0 - 0)
 		IfNotBlocked
 		reached[1][4] = 1;
-		if (!(((((int)now.y0)==0)|(((int)now.s)!=0))))
+		if (!(((((int)now.y0)==0)||(((int)now.s)!=1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
 	case 8: // STATE 5 - q2.pml:48 - [qCritical = 1] (0:0:1 - 0)
@@ -156,10 +156,10 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 14: // STATE 4 - q2.pml:23 - [(((y1==0)|(s!=1)))] (0:0:0 - 0)
+	case 14: // STATE 4 - q2.pml:23 - [(((y1==0)||(s!=0)))] (0:0:0 - 0)
 		IfNotBlocked
 		reached[0][4] = 1;
-		if (!(((((int)now.y1)==0)|(((int)now.s)!=1))))
+		if (!(((((int)now.y1)==0)||(((int)now.s)!=0))))
 			continue;
 		_m = 3; goto P999; /* 0 */
 	case 15: // STATE 5 - q2.pml:27 - [pCritical = 1] (0:0:1 - 0)

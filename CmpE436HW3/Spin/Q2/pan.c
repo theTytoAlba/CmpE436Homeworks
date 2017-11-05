@@ -12310,7 +12310,7 @@ do_reach(void)
 void
 iniglobals(int calling_pid)
 {
-		now.y0 = 1;
+		now.y0 = 0;
 		now.y1 = 0;
 		now.s = 0;
 		now.pCritical = 0;
