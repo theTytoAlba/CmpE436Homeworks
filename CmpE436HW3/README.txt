@@ -1,7 +1,8 @@
 This is the eclipse project folder for homework 3.
 
-Student Name: Irmak Kavasoglu
+Student name: Irmak Kavasoglu
 Student ID: 2013400090
+irmakkavasoglu@gmail.com
 
 Q1:
 The classes are in eclipse project files, under src folder in Q1.
@@ -32,7 +33,7 @@ CountingSemaphore
 This example has a counting semaphore which has 2 available locks. We don't know which two of the existing 5 threads will get it first and which ones will get it last, but happens before relation is defined between locks and unlocks so the algorithm doesnt see the race.
 
 C.
-RoadRunner is inside this repo. You can run it using the commands in the install.txt file.
+Since I have run the classes in RoadRunner but I haven't included the RR repo in this homework folder.
 
 RoadRunner's HB methods are working very correctly. But it's LS algorithm doesnt work properly. I did my research and digged out this line from the published paper of the RoadRunner:
 
