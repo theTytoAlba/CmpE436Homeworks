@@ -118,7 +118,7 @@ The value of v[i] is always maximum in the ith process, because only ith clock c
 
 s.v[s.p] ≤ t.v[s.p]) and t.v[s.p] ≤ s.v[s.p] => t.v[s.p] = s.v[s.p].
 
-If we know that both process t and s has the value of s the same, s must have sent a message to t (so t can update the value of s to match the value of s in process s) and s shouldn't have any following event because if it had, the value of s in process s would increase (and break the equality).
+If we know that both process t and s has the value of s the same, s must have sent a message to t (this can happen via other processes) so t can update the value of s to match the value of s in process s; and s shouldn't have any following event because if it had, the value of s in process s would increase (and break the equality).
 
 We know that if s has just sent a message to t, it also sent the other processes' values, and upon receiving, t has updated its vector by taking the maximum of the value in its own vector and the message's vector. Now we can say that s.v[i] ≤ t.v[i] where (s.v[t.p] < t.v[t.p]), hence (s → t). Part 2 proven.
 
